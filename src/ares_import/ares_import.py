@@ -100,7 +100,7 @@ class Importer(object):
         self.ares_import = self.ares_runtime + '/import'
         logging.info('ARES import folder is {0}'.format(self.ares_import))
 
-        self.admin_server_log = self.ares_runtime + '/AdminServer/ares_server.log'
+        self.admin_server_log = self.ares_runtime + '/AdminServer/AdminServer.log'
         logging.info('Monitoring ARES Server log file {0}'.format(self.admin_server_log))
 
         # Evaluate input data files
