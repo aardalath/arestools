@@ -59,7 +59,7 @@ __status__ = "Prototype" # Prototype | Development | Production
 log_level = logging.INFO
 
 # Set up logging information
-format_string = '%(asctime)s %(levelname)-8s %(message)s'
+format_string = '%(asctime)s %(levelname).1s %(message)s'
 logging.basicConfig(level=log_level, format=format_string, stream=sys.stderr)
 
 def get_args():
