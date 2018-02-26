@@ -1,58 +1,58 @@
 {
-    "TM_PARAM_REQUEST": { 
-        "re": "^ParamRequest", 
-        "dir": "parameter" 
-    },
-	"TM_PARAM_IMPORT": { 
-        "re": "^ParamImport", 
-        "dir": "parameter" 
-    },
-	"TM_PARAM_LCT_REQUEST": { 
-        "re": "^ParamLctRequest", 
-        "dir": "parameter" 
-    },
-	"TC_REQUEST": { 
-        "re": "^TCRequest", 
-        "dir": "command" 
-    },
-	"TC_IMPORT": { 
-        "re": "^TCImport", 
-        "dir": "command" 
-    },
-	"TC_BRIEF_REQUEST": { 
-        "re": "^TCBriefRequest", 
-        "dir": "command" 
-    },
-	"TC_UPDATE_IMPORT": { 
-        "re": "^TCUpdateImport", 
-        "dir": "command" 
-    },
-	"S2KE_REQUEST": { 
-        "re": "^S2keRequest", 
-        "dir": "s2kevent" 
-    },
-	"S2KE_IMPORT": { 
-        "re": "^S2keImport", 
-        "dir": "s2kevent" 
-    },
-	"TM_REQUEST": { 
-        "re": "^TMRequest", 
-        "dir": "tmpacket" 
-    },
-	"TM_IMPORT": { 
-        "re": "^TMImport", 
-        "dir": "tmpacket" 
-    },
-	"MPS_PARAM_IMPORT": { 
-        "re": "^MpsParam", 
-        "dir": "parameter" 
-    },
-	"MPS_EVENT_IMPORT": { 
-        "re": "^MpsEvent", 
-        "dir": "mpsevent" 
-    },
-	"TM_PARAM_DEF_IMPORT": { 
-        "re": "^TMParamDef", 
-        "dir": "paramdef" 
-    }
+   "TC_REQUEST" : {
+      "re" : "^TCRequest",
+      "dir" : "command"
+   },
+   "TC_IMPORT" : {
+      "re" : "^TCImport",
+      "dir" : "command"
+   },
+   "TC_BRIEF_REQUEST" : {
+      "re" : "^TCBriefRequest",
+      "dir" : "command"
+   },
+   "TM_IMPORT" : {
+      "dir" : "tmpacket",
+      "re" : "^TMImport"
+   },
+   "MPS_PARAM_IMPORT" : {
+      "re" : "^MpsParam",
+      "dir" : "parameter"
+   },
+   "TM_PARAM_REQUEST" : {
+      "dir" : "parameter",
+      "re" : "^ParamRequest"
+   },
+   "MPS_EVENT_IMPORT" : {
+      "re" : "^MpsEvent",
+      "dir" : "mpsevent"
+   },
+   "TC_UPDATE_IMPORT" : {
+      "re" : "^TCUpdateImport",
+      "dir" : "command"
+   },
+   "S2KE_REQUEST" : {
+      "re" : "^S2keRequest",
+      "dir" : "s2kevent"
+   },
+   "TM_REQUEST" : {
+      "re" : "^TMRequest",
+      "dir" : "tmpacket"
+   },
+   "S2KE_IMPORT" : {
+      "dir" : "s2kevent",
+      "re" : "^S2keImport"
+   },
+   "TM_PARAM_IMPORT" : {
+      "dir" : "parameter",
+      "re" : "^ParamImport"
+   },
+   "TM_PARAM_LCT_REQUEST" : {
+      "dir" : "parameter",
+      "re" : "^ParamLctRequest"
+   },
+   "TM_PARAM_DEF_IMPORT" : {
+      "dir" : "paramdef",
+      "re" : "^TMParamDef"
+   }
 }

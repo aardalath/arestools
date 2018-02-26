@@ -21,6 +21,14 @@ __email__ = "jcgonzalez@sciops.esa.int"
 __status__ = "Prototype" # Prototype | Development | Production
 
 
+# Change INFO for DEBUG to get debug messages
+log_level = logging.INFO
+
+# Set up logging information
+format_string = '%(asctime)s %(levelname)-8s %(message)s'
+logging.basicConfig(level=log_level, format=format_string, stream=sys.stderr)
+
+
 #----------------------------------------------------------------------------
 # Class: Importer
 #----------------------------------------------------------------------------
@@ -68,9 +76,9 @@ class Importer(object):
 
 
         if (not data_type) and (not import_dir):
-            logging.info('Reading import script config. file'.format(self.ares_runtime))
             this_script_dir = os.path.dirname(os.path.realpath(__file__))
             cfg_file = this_script_dir + '/' + Importer.AresFileTypesCfgFile
+            logging.info('Reading import script config. file {}'.format(cfg_file))
             try:
                 self.ares_data_types = json.load(open(cfg_file))
                 self.compile_patterns()
