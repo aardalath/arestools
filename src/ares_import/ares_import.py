@@ -78,12 +78,12 @@ class Importer(object):
         if (not data_type) and (not import_dir):
             this_script_dir = os.path.dirname(os.path.realpath(__file__))
             cfg_file = this_script_dir + '/' + Importer.AresFileTypesCfgFile
-            logging.info('Reading import script config. file {}'.format(cfg_file))
+            logging.info('Reading import script config. file {0}'.format(cfg_file))
             try:
                 self.ares_data_types = json.load(open(cfg_file))
                 self.compile_patterns()
             except:
-                logging.fatal('Import script config. file not found in {}'
+                logging.fatal('Import script config. file not found in {0}'
                               .format(cfg_file))
 
         logging.info('-'*60)
@@ -92,20 +92,20 @@ class Importer(object):
             self.ares_runtime = ares_runtime
 
         if not os.path.isdir(self.ares_runtime):
-            logging.fatal('ARES system runtime folder {} does not exist'
+            logging.fatal('ARES system runtime folder {0} does not exist'
                           .format(self.ares_runtime))
             os._exit(1)
 
-        logging.info('ARES system runtime folder is {}'.format(self.ares_runtime))
+        logging.info('ARES system runtime folder is {0}'.format(self.ares_runtime))
         self.ares_import = self.ares_runtime + '/import'
-        logging.info('ARES import folder is {}'.format(self.ares_import))
+        logging.info('ARES import folder is {0}'.format(self.ares_import))
 
         self.admin_server_log = self.ares_runtime + '/AdminServer/ares_server.log'
-        logging.info('Monitoring ARES Server log file {}'.format(self.admin_server_log))
+        logging.info('Monitoring ARES Server log file {0}'.format(self.admin_server_log))
 
         # Evaluate input data files
         if not os.path.isdir(self.data_dir):
-            logging.fatal('Specified input data folder {} does not exist'
+            logging.fatal('Specified input data folder {0} does not exist'
                           .format(self.data_dir))
             os._exit(1)
 
@@ -117,7 +117,7 @@ class Importer(object):
 
         if import_dir:
             if not os.path.isdir(import_dir):
-                logging.fatal('Location for importing input files {} does not exist'
+                logging.fatal('Location for importing input files {0} does not exist'
                               .format(import_dir))
                 os._exit(1)
             self.import_dir = import_dir
@@ -200,14 +200,14 @@ class Importer(object):
             os._exit(1)
 
         fimport_dir = 'paramdef/' + self.import_dir
-        logging.info('Import folder for definition file is {}'.format(fimport_dir))
+        logging.info('Import folder for definition file is {0}'.format(fimport_dir))
 
         fname = self.def_file
-        logging.info('Preparing import of definition file: {}'
+        logging.info('Preparing import of definition file: {0}'
                      .format(fname))
 
         import_dir = self.ares_import + '/' + fimport_dir
-        logging.info('Data type: {} (folder: {})'.format('DEF_FILE',import_dir))
+        logging.info('Data type: {0} (folder: {1})'.format('DEF_FILE',import_dir))
 
         # Copy def file to import folder
         copy(fname, import_dir)
@@ -237,7 +237,7 @@ class Importer(object):
         # Main loop on files
         self.num_of_files = len(self.input_files)
         for i, fname in enumerate(self.input_files):
-            logging.info('Preparing import of file {} of {}: {}'
+            logging.info('Preparing import of file {0} of {1}: {2}'
                          .format(i + 1, self.num_of_files, fname))
 
             # Detect data type
@@ -264,7 +264,7 @@ class Importer(object):
                 continue
 
             import_dir = self.ares_import + "/" + fimport_dir
-            logging.info('Data type: {} (folder: {})'.format(ftype,import_dir))
+            logging.info('Data type: {0} (folder: {1})'.format(ftype,import_dir))
 
             # Copy data file to import folder
             copy(fname, import_dir)
@@ -279,7 +279,7 @@ class Importer(object):
         '''
 
         fname = self.input_file
-        logging.info('Preparing import of file {} of {}: {}'
+        logging.info('Preparing import of file {0} of {1}: {2}'
                      .format(1, self.num_of_files, fname))
 
         # Detect data type
@@ -306,7 +306,7 @@ class Importer(object):
             return
 
         import_dir = self.ares_import + "/" + fimport_dir
-        logging.info('Data type: {} (folder: {})'.format(ftype,import_dir))
+        logging.info('Data type: {0} (folder: {1})'.format(ftype,import_dir))
 
         # Copy data file to import folder
         copy(fname, import_dir)
@@ -335,10 +335,10 @@ class Importer(object):
 
         logging.info('-'*60)
         logging.info('Import process completed.')
-        logging.info('{} of {} files successfully imported.'
+        logging.info('{0} of {1} files successfully imported.'
                      .format(self.num_of_imported_files, self.num_of_files))
         if self.num_of_failed_files > 0:
-            logging.warn('{} of {} files import failed.'
+            logging.warn('{0} of {1} files import failed.'
                          .format(self.num_of_failed_files, self.num_of_files))
         logging.info('-'*60)
         logging.info('Done.')
