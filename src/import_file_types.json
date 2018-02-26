@@ -1,0 +1,5 @@
+{
+  "Parameter": { "re": "^Param", "dir": "param" },
+  "Command":   { "re": "^TC", "dir": "command" },
+  "Telemetry": { "re": "^TM", "dir": "telemetry" }
+}
