@@ -12,16 +12,24 @@
       "dir" : "command"
    },
    "TM_IMPORT" : {
-      "dir" : "tmpacket",
-      "re" : "^TMImport"
+      "re" : "^TMImport",
+      "dir" : "tmpacket"
    },
    "MPS_PARAM_IMPORT" : {
       "re" : "^MpsParam",
       "dir" : "parameter"
    },
    "TM_PARAM_REQUEST" : {
-      "dir" : "parameter",
-      "re" : "^ParamRequest"
+      "re" : "^ParamRequest",
+      "dir" : "parameter"
+   },
+   "BATCH_EVENT_REQUEST" : {
+      "re" : "^BatchRequest.EventRecordReport",
+      "dir" : "s2kevent"
+   },
+   "BATCH_PARAM_REQUEST" : {
+      "re" : "^BatchRequest.Param",
+      "dir" : "parameter"
    },
    "MPS_EVENT_IMPORT" : {
       "re" : "^MpsEvent",
@@ -36,23 +44,23 @@
       "dir" : "s2kevent"
    },
    "TM_REQUEST" : {
-      "re" : "^TMRequest",
+      "re" : "^TMReportRequest",
       "dir" : "tmpacket"
    },
    "S2KE_IMPORT" : {
-      "dir" : "s2kevent",
-      "re" : "^S2keImport"
+      "re" : "^S2keImport",
+      "dir" : "s2kevent"
    },
    "TM_PARAM_IMPORT" : {
-      "dir" : "parameter",
-      "re" : "^ParamImport"
+      "re" : "^ParamImport",
+      "dir" : "parameter"
    },
    "TM_PARAM_LCT_REQUEST" : {
-      "dir" : "parameter",
-      "re" : "^ParamLctRequest"
+      "re" : "^ParamLctRequest",
+      "dir" : "parameter"
    },
    "TM_PARAM_DEF_IMPORT" : {
-      "dir" : "paramdef",
-      "re" : "^TMParamDef"
+      "re" : "^TMParamDef",
+      "dir" : "paramdef"
    }
 }

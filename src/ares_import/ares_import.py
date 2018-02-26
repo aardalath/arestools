@@ -5,6 +5,7 @@
 Package to help to the data files import process'''
 
 from shutil import copy
+from pprint import pprint
 
 import os, sys
 import logging
@@ -75,17 +76,24 @@ class Importer(object):
         self.num_of_failed_files = 0
         self.ares_data_types = {}
         
-        if (not data_type) and (not import_dir):
-            this_script_dir = os.path.dirname(os.path.realpath(__file__))
-            cfg_file = this_script_dir + '/' + Importer.AresFileTypesCfgFile
-            logging.info('Reading import script config. file {0}'.format(cfg_file))
-            try:
-                self.ares_data_types = json.load(open(cfg_file))
-                self.compile_patterns()
-            except:
-                logging.fatal('Import script config. file not found in {0}'
-                              .format(cfg_file))
+        this_script_dir = os.path.dirname(os.path.realpath(__file__))
+        cfg_file = this_script_dir + '/../' + Importer.AresFileTypesCfgFile
+        logging.info('Reading import script config. file {0}'.format(cfg_file))
+        try:
+	    with open(cfg_file) as fcfg:
+                try:
+                    self.ares_data_types = json.load(fcfg)
+                    self.compile_patterns()
+                except:
+       	            logging.fatal('Problem while reading config. file {0}'
+                                  .format(cfg_file))
+       	            os._exit(1)
+        except:
+            logging.fatal('Import script config. file not found in {0}'
+                          .format(cfg_file))
+            os._exit(1)
 
+        #pprint(self.ares_data_types)
         logging.info('-'*60)
 
         if ares_runtime:
@@ -165,6 +173,7 @@ class Importer(object):
         was successful
         :return:
         '''
+	time.sleep(3)
         result = False
         end_monitor = False
         with open(self.admin_server_log, 'r') as f:
@@ -176,12 +185,12 @@ class Importer(object):
                 last_2_lines = self.tail(f, lines = 2)
                 line1 = last_2_lines[0]
                 line2 = last_2_lines[1]
-
-                if re.match(r'FileManagerImpl \- Finished importing', line2):
-                    if re.match(r' \- Import time:', line1):
+                #print ">>> {0}\n>>> {1}\n".format(line1,line2)
+                if re.search(r' - Finished importing', line2):
+                    if re.search(r' - Import time:', line1):
                         result = True
                         end_monitor = True
-                    if re.match(r' \- Import of task .* failed', line1):
+                    if re.search(r' - Import of task .* failed', line1):
                         result = False
                         end_monitor = True
                     continue
