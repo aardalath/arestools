@@ -112,14 +112,15 @@ class Importer(object):
         logging.info('Monitoring ARES Server log file {0}'.format(self.admin_server_log))
 
         # Evaluate input data files
-        if not os.path.isdir(self.data_dir):
-            logging.fatal('Specified input data folder {0} does not exist'
-                          .format(self.data_dir))
-            os._exit(1)
+        if data_dir:
+            if not os.path.isdir(self.data_dir):
+                logging.fatal('Specified input data folder {0} does not exist'
+                              .format(self.data_dir))
+                os._exit(1)
 
         self.input_files = glob.glob(self.data_dir + '/*.dat')
         logging.debug(self.input_files)
-        if len(self.input_files) < 1:
+        if (len(self.input_files) < 1) and (not input_file):
             logging.fatal('No data files found for ingestion')
             os._exit(1)
 
