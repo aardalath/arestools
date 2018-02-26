@@ -73,8 +73,8 @@ class Importer(object):
         self.num_of_files = 1
         self.num_of_imported_files = 0
         self.num_of_failed_files = 0
-
-
+        self.ares_data_types = {}
+        
         if (not data_type) and (not import_dir):
             this_script_dir = os.path.dirname(os.path.realpath(__file__))
             cfg_file = this_script_dir + '/' + Importer.AresFileTypesCfgFile
