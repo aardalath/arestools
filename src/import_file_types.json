@@ -21,7 +21,7 @@
    },
    "TM_PARAM_REQUEST" : {
       "re" : "^ParamRequest",
-      "dir" : "parameter"
+      "dir" : "parameter/eddsBinary"
    },
    "BATCH_EVENT_REQUEST" : {
       "re" : "^BatchRequest.EventRecordReport",
@@ -29,7 +29,7 @@
    },
    "BATCH_PARAM_REQUEST" : {
       "re" : "^BatchRequest.Param",
-      "dir" : "parameter"
+      "dir" : "parameter/eddsBinary"
    },
    "MPS_EVENT_IMPORT" : {
       "re" : "^MpsEvent",
