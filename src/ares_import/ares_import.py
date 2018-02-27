@@ -23,7 +23,7 @@ __status__ = "Prototype" # Prototype | Development | Production
 
 
 # Change INFO for DEBUG to get debug messages
-log_level = logging.INFO
+log_level = logging.DEBUG
 
 # Set up logging information
 format_string = '%(asctime)s %(levelname).1s %(message)s'
@@ -118,12 +118,18 @@ class Importer(object):
                               .format(self.data_dir))
                 os._exit(1)
 
-        self.input_files = glob.glob(self.data_dir + '/*.dat')
+            self.input_files = glob.glob(self.data_dir + '/*.dat')
+        elif input_file:
+            self.input_files = glob.glob(self.input_file)
+        else:
+            logging.fatal('No input files provided.')
+            os._exit(1)
+            
         logging.debug(self.input_files)
-        if (len(self.input_files) < 1) and (not input_file):
+        if len(self.input_files) < 1:
             logging.fatal('No data files found for ingestion')
             os._exit(1)
-
+            
         if import_dir:
             if not os.path.isdir(import_dir):
                 logging.fatal('Location for importing input files {0} does not exist'
@@ -338,10 +344,10 @@ class Importer(object):
         logging.info('Import process starting')
         logging.info('-'*60)
 
-        if self.data_dir:
-            self.do_import_from_dir()
-        else:
-            self.do_import_single_file()
+        #if self.data_dir:
+        self.do_import_from_dir()
+        #else:
+        #    self.do_import_single_file()
 
         logging.info('-'*60)
         logging.info('Import process completed.')

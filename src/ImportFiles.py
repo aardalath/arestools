@@ -4,13 +4,13 @@
 
 Import data files to ARES
 
-Usage: ImportFiles.py [-h] [-i INPUT] [-f INPUT_FILE] [-D DEF] [-r RUNTIME]
+Usage: ImportFiles.py [-h] [-i INPUT] [-f IFILE] [-D DEF] [-r RUNTIME]
                       [-d DIR] [-t TYPE]
 
 optional arguments:
   -h, --help                        show this help message and exit
   -i INPUT, --input INPUT           Data files directory
-  -f INPUT_FILE, --file INPUT_FILE  Input data file
+  -f IFILE, --files IFILE           Input data file(s) (can include wildcards)
   -D DEF, --def DEF                 Definition file (this makes -d option
                                     mandatory)
   -r RUNTIME, --runtime RUNTIME     ARES Runtime Folder
@@ -19,7 +19,7 @@ optional arguments:
 where:
 
   INPUT      Directory where the input data file to import are located
-  INPUT_FILE Single input file to be imported
+  IFILE      Single input file to be imported
   DEF        Definition file for user-defined data types
   RUNTIME    Directory where the ARES runtime environment is installed
              If non present, then ~/ARES_RUNTIME is assumed, unless
@@ -29,7 +29,9 @@ where:
   TYPE       Assumed data type for all the files
 
 Note that when specifying a definition file, the "paramdef|parameter" part of
-the import folder must be omitted.
+the import folder must be omitted. In addition, if you use the -f option to
+specify more that one file (by using wildcards), you must include the argument
+between quotes, like './*.dat')
 
 Alternatively, you can activate the execution permissions of this script, and
 call it directly.
@@ -66,18 +68,24 @@ def get_args():
     '''
     Function for parsing command line arguments
     '''
+    epilogStr='''
+    Note that when specifying a definition file, the "paramdef|parameter" 
+    part of the import folder must be omitted.
+
+    In addition, if you use the -f option to specify more that one file
+    (by using wildcards), you must include the argument between quotes, 
+    like './*.dat')
+    '''                                       
     parser = argparse.ArgumentParser(description='Import data files into ARES',
                                      formatter_class=lambda prog:
                                      argparse.HelpFormatter(prog,
                                                             max_help_position=76),
-                                     epilog='Note that when specifying a definition '
-                                            'file, the "paramdef|parameter" part of the '
-                                            'import folder must be omitted.')
+                                     epilog=epilogStr)
     parser.add_argument('-i', '--input',
                         help='Input data files directory',
                         dest='input', default=None)
-    parser.add_argument('-f', '--file',
-                        help='Input data file',
+    parser.add_argument('-f', '--files',
+                        help='Input data file(s) (can include wildcards)',
                         dest='ifile', default=None)
     parser.add_argument('-D', '--def',
                         help='Definition file (this makes -d option mandatory)',
